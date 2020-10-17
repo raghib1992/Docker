@@ -6,6 +6,7 @@ docker images
 
 # to create image from Docker file
 docker build -t <image-name> -f <docker-filr> path
+docker build -t <image name:tag> -f <dockerfile-name> --build-arg user=richard
 
 
 ## to delete image
