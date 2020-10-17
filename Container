@@ -1,0 +1,5 @@
+##enter into container
+docker exec -ti <container-name> bash  #bash terminal we use here
+
+exit  # back to machine
+
