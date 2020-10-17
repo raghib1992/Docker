@@ -4,6 +4,10 @@ downloaded OS images form Docker hub
 #Dockerfile   #vi Dockerfile
 FROM centos:7
 RUN yum install httpd -y
+CMD -DFOREGROUND
+
 
 ## turn Dockerfile into images
 dcoker build --tag centos_apache:v1
+
+docker build -t <image-name> -f <docker-filr> path
