@@ -4,6 +4,10 @@ docker hub # all the world store images
 ## to find the downloaded images
 docker images
 
+# to create image from Docker file
+docker build -t <image-name> -f <docker-filr> path
+
+
 ## to delete image
 docker rmi package_name
 
@@ -26,3 +30,4 @@ docker rm <ID/Name>
 
 force full remove
 docker rm -f <ID/Name>
+
