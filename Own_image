@@ -18,14 +18,14 @@ docker build -t <image-name> -f <docker-filr> path
 
 
 ## Environmental Details
-#Dockerfile   #vi Dockerfile
+#Dockerfile   #vi Dockerfile #CMD
 FROM centos:7
 RUN yum install httpd unzip -y
 ENV SISO file
 COPY folder /path/to/copy
 ADD url /path/to/copy
 RUN cd /var/www/html && unzip file.zip && mv /var/www/html/$SISO/* /var/www/html
-CMD -DFOREGROUND
+CMD -DFOREGROUND   # To start the process
 
 ## Working Directory
 #Dockerfile   #vi Dockerfile
