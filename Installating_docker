@@ -1,0 +1,10 @@
+## Install docker in Ubuntu
+
+# search for Docker for Ubuntu/Centos
+
+# adduserinto docker group
+usermod -aG docker user
+
+# to enable service
+systemctl enable docker
+
