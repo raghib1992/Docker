@@ -3,7 +3,10 @@ downloaded OS images form Docker hub
 
 #Dockerfile   #vi Dockerfile
 FROM centos:7
-RUN yum install httpd -y
+RUN yum install httpd unzip -y
+COPY folder /path/to/copy
+ADD url /path/to/copy
+RUN cd /var/www/html && unzip file.zip && mv /var/www/html/file/* /var/www/html
 CMD -DFOREGROUND
 
 
@@ -11,3 +14,41 @@ CMD -DFOREGROUND
 dcoker build --tag centos_apache:v1
 
 docker build -t <image-name> -f <docker-filr> path
+
+
+
+## Environmental Details
+#Dockerfile   #vi Dockerfile
+FROM centos:7
+RUN yum install httpd unzip -y
+ENV SISO file
+COPY folder /path/to/copy
+ADD url /path/to/copy
+RUN cd /var/www/html && unzip file.zip && mv /var/www/html/$SISO/* /var/www/html
+CMD -DFOREGROUND
+
+## Working Directory
+#Dockerfile   #vi Dockerfile
+FROM centos:7
+WORKDIR /var/www/html
+RUN yum install httpd unzip -y
+ENV SISO file
+COPY folder /path/to/copy
+ADD url /path/to/copy
+RUN unzip file.zip && mv $SISO/* .
+CMD -DFOREGROUND
+
+
+
+## Label
+#Dockerfile   #vi Dockerfile
+LABEL maintainer=Ricardo
+LABEL vendor=companyB
+FROM centos:7
+WORKDIR /var/www/html
+RUN yum install httpd unzip -y
+ENV SISO file
+COPY folder /path/to/copy
+ADD url /path/to/copy
+RUN unzip file.zip && mv $SISO/* .
+CMD -DFOREGROUND
