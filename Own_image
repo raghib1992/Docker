@@ -52,3 +52,39 @@ COPY folder /path/to/copy
 ADD url /path/to/copy
 RUN unzip file.zip && mv $SISO/* .
 CMD -DFOREGROUND
+
+
+## User
+#Dockerfile   #vi Dockerfile
+LABEL maintainer=Ricardo
+LABEL vendor=companyB
+FROM centos:7
+WORKDIR /var/www/html
+RUN yum install httpd unzip -y
+ENV SISO file
+COPY folder /path/to/copy
+ADD url /path/to/copy
+RUN unzip file.zip && mv $SISO/* .
+RUN useradd user
+USER USER      # switch to user
+RUN rm -rf file.zip $file
+CMD -DFOREGROUND
+
+
+
+## ARGs
+#Dockerfile   #vi Dockerfile
+ARG user=application
+LABEL maintainer=Ricardo
+LABEL vendor=companyB
+FROM centos:7
+WORKDIR /var/www/html
+RUN yum install httpd unzip -y
+ENV SISO file
+COPY folder /path/to/copy
+ADD url /path/to/copy
+RUN unzip file.zip && mv $SISO/* .
+RUN useradd $user && chown $user:$user ./html -R
+USER $user
+RUN rm -rf file.zip $file
+CMD -DFOREGROUND
