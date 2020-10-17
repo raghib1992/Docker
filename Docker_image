@@ -19,7 +19,7 @@ docker rmi  mysql:5.7.31
 
 docker run -d image   # -d for background (detached mode)
 docker run -d -p 9090:80 mysql5.7   #to add port
-
+docker run -d -ti --name <name-of-docker> -p <portno:no> <image-name:tag>    
 
 docker run -d nginx:1.19.3
 
