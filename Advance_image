@@ -1,0 +1,18 @@
+## docker ignore file
+vi .dockerignore
+<mention the folder and file>
+
+## Best Practice
+# container should have one process running
+# buildcontext should be small #shouldn't include file which not used by using .dockerignore file
+# avoid installing un-necessary packages
+# less layes in images
+
+## ssl certificate
+"self sign certificate linux"  search in google
+
+## dangling image
+# to remove dangling image
+docker images -f dangling=true   # to get only dandling images
+docker images -f dangling=true -q  # to mage id of dangling image
+docker rmi $(docker images -f dangling=true -q)
