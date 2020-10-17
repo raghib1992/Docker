@@ -75,6 +75,7 @@ CMD -DFOREGROUND
 ## ARGs
 #Dockerfile   #vi Dockerfile
 ARG user=application
+ARG httpd_package
 LABEL maintainer=Ricardo
 LABEL vendor=companyB
 FROM centos:7
