@@ -89,3 +89,31 @@ RUN useradd $user && chown $user:$user ./html -R
 USER $user
 RUN rm -rf file.zip $file
 CMD -DFOREGROUND
+--------------------------------------------------------------------------------------------
+## create Dockerfile ro run nginx and latest php7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
