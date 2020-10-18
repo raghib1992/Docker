@@ -26,7 +26,16 @@ docker run -d -v <volume-name>:<path-to-container> --name <container-name> -p <h
  # to remove volume use flag while destroying container
  docker rm -fv <container-name/ID>
  
+ # Dockerfile
+ VOLUME /var/www/html    # to copy the maention contenet in anonymous volume
  
+ # to get the list of dangling volume
+ docker volume ls -f=dangling=true
+ 
+ docker volume rm $(docker volume ls -f=dangling=true -q)
+ 
+ # execute command in container without entering into it i.e. is from host
+ docker exec <container-name> bash -c "command"
  
  
  
