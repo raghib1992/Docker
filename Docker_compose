@@ -1,0 +1,132 @@
+ 1. Install Docker-Compose
+ 2. Create file - docker-compose.yaml
+ 3. vi docker-compose.yml
+     version:
+     services:
+     volumes:
+     netowrk:
+     
+  4. docker-compose.yml
+     version: '3'
+     services:
+       web:
+        container_name: nginx-compose
+        ports:
+          - "8080:80"
+        image: nginx:alpine
+        
+  5. docker-compose up -d            # to start container using docker-compose file
+  6. docker-compose down             # to remove container
+     docker-compose down -f docker-compose-mysql.yml
+  
+  7. variable
+   docker-compose-mysql.yml
+     version: '3'
+     services:
+       db:
+         container_name: mysql
+         ports:
+           - "3306:3306"
+         env_file: env.txt
+            or
+         environment:
+           - MYSQL_ROOT_PASSWORD=12345678
+           - SHOW=true         
+         image: mysql:5.7 
+         volumes:
+           - "/opt/mysql:/var/lib/mysql"        #BIND VOLUME
+       volumes:
+         mysql_volume:                          #Normal Volume
+         
+         
+         
+   vi env.txt
+   MYSQL_ROOT_PASSWORD=12345678
+   SHOW=file
+         
+  8. Network
+  
+  version: '3'
+  
+  services:
+    web:
+      container_name: nginx
+      image: nginx:alpine
+      ports:
+        - "8080:80"
+      networks:
+        - test_net
+    db:
+      container_name: mysql
+      image: mysql:5.7
+      ports:
+        - "6060:3306"
+      networks:
+        - test_net
+      environment:
+        - MYSQL_ROOT_PASSWORD=12345
+      tty: true                   # to keep container live
+      
+  networks:
+    - test_net:
+    
+         
+  9. Build
+  
+  version: '3'
+  services:
+    web
+      image: my_image
+      container_name: test_container
+      build:
+        context: .
+        dockerfile: Dockerfile-my-image
+         
+ docker-compose build        
+         
+         
+  version: '3'
+  services:
+    web
+      image: my_image
+      container_name: test_container
+      build:
+        context: docker-image
+        dockerfile: Dockerfile-my-image 
+        
+        
+  10. overwrite CMD
+  
+  version: '3'
+  services:
+    web
+      image: centos
+      container_name: test_container
+      command: python -m SimpleHTTPServer
+        
+        
+        
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+         
+         
+         
