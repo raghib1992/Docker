@@ -16,3 +16,33 @@ vi .dockerignore
 docker images -f dangling=true   # to get only dandling images
 docker images -f dangling=true -q  # to mage id of dangling image
 docker rmi $(docker images -f dangling=true -q)
+
+
+## Multilayer Images
+
+# Dockerfile
+fallocate -l10M file1   # to create file with specific size
+
+FROM centos as alaias
+RUN fallocate -l 10M /opt/1
+RUN fallocate -l 10M /opt/1
+RUN fallocate -l 5M /opt/jar
+
+FROM alpinr
+COPY --from=alias /opt/jar /jaggu.jar
+
+
+Dockerfile2
+ 
+
+
+
+
+
+
+
+
+
+
+
+
