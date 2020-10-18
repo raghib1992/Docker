@@ -66,6 +66,43 @@ docker commit <ID/Container-name> <image-name:tag>
 docker run -d --name centos -p 80:80 <image-name> python -m SimpleHTTPServer 80 
 
 
+## Destroy container automatically when we exit container
+docker run --rm -ti centos bash    # to go inside container to test and destroy when you exit
+
+
+## Change docker root location
+docker info    # information about info
+/var/lib/docker   # default docker root directory
+
+#stop all container
+docker stop $(docker ps -a -q)
+
+# stop docker service
+sudo systemctl stop docker
+
+#edit docker.service file
+sudo vi /lib/systemd/system/docker.service  # contain all configuration
+ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock -data-root /mnt/docker
+
+# restar daemon
+systemctl daemon-reload
+
+# restart docker
+systemctl restart docker
+
+# to check
+docker info |grep -i root
+
+# clear /mnt directory
+rm -rf /mnt
+
+# move docker file to mnt directory
+mv docker /mnt
+
+# restart docker services
+systemctl restart docker
+
+
 
 
 
