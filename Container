@@ -1,5 +1,44 @@
-##enter into container
+## To create container
+docker run <image-name>
+docker run -d <image-name>                 # -d is ffor detach mode(background)
+docker container create <image-name>
+
+
+## To check container in docker host
+docker ps
+docker ps -a                              # for all docker running and exited (--all)
+docker ps -a -q                           # Id of all container
+docker container ls
+
+
+## To remove or rename container
+docker rm <name/ID>
+docker rm f <name/ID>                  # to remove running container by force
+docker rename <old name> <new-name>
+
+## Start Stop Map port
+# map port to docker host
+docker run -d --name <container-name> -p <host-port:jenkins-port> <image-name>
+
+# to stop
+docker stop <docker-name>
+
+# to start
+docker start <docker-name>
+
+
+## Variable in container
+
+
+
+
+
+
+
+
+## Enter into container
 docker exec -ti <container-name> bash  #bash terminal we use here
 
 exit  # back to machine
+
 
