@@ -104,7 +104,8 @@ RUN adduser nadim && \
 
 COPY remote-key.pub /home/nadim/.ssh/authorized_keys
 
-RUN chown nadim:nadim -R /home/nadim/.ssh/authorized_keys
+RUN chown nadim:nadim -R /home/nadim/.ssh/authorized_keys && \
+    chmod 600 /home/nadim/.ssh/authorized_keys
 
 RUN /usr/sbin/sshd-keygen
 
