@@ -90,11 +90,30 @@ USER $user
 RUN rm -rf file.zip $file
 CMD -DFOREGROUND
 --------------------------------------------------------------------------------------------
-## create Dockerfile ro run nginx and latest php7
+## ssh server with mysql and aws cli # run /usr/local/bin/aws --version
 
 
+FROM centos:7
 
+RUN yum install -y openssh-server mysql unzip
 
+RUN adduser nadim && \
+    echo "12345" | passwd nadim --stdin && \
+    mkdir /home/nadim/.ssh && \
+    chmod 700 /home/nadim/.ssh
+
+COPY remote-key.pub /home/nadim/.ssh/authorized_keys
+
+RUN chown nadim:nadim -R /home/nadim/.ssh/authorized_keys
+
+RUN /usr/sbin/sshd-keygen
+
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    ./aws/install
+
+CMD /usr/sbin/sshd -D
+------------------------------------------------------------------------------------------
 
 
 
