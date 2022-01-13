@@ -98,4 +98,6 @@ aws secretsmanager create-secret --name SPLUNK_PASSWORD --secret-string Splunk-1
 #### c. 
 
 ### 12. Create Service
+### 13. Create s3 for get NLB log
+#### a. bucket policy
 ************************************
