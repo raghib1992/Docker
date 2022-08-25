@@ -32,7 +32,7 @@ app.post('/create', async (req, res) => {
   const finalFilePath = path.join(__dirname, 'feedback', adjTitle + '.txt');
 
   console.log('testing.....')
-  
+
   await fs.writeFile(tempFilePath, content);
   exists(finalFilePath, async (exists) => {
     if (exists) {
@@ -45,4 +45,4 @@ app.post('/create', async (req, res) => {
   });
 });
 
-app.listen(80);
+app.listen(process.env.PORT));

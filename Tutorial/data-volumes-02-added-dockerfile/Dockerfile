@@ -8,7 +8,10 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 80
+# PORT variable is mention inthe code, passsing through docker file via ENV
+ENV PORT 80
+
+EXPOSE $PORT
 
 VOLUME [ "/app/feedback" ]
 
