@@ -34,7 +34,34 @@ COPY --from=alias /opt/jar /jaggu.jar
 
 Dockerfile2
  
+------
+FROM node:14-slim
 
+RUN userdel -r node
+
+ARG USER_ID
+
+ARG GROUP_ID
+
+RUN addgroup --gid $GROUP_ID user
+
+RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID user
+
+USER user
+
+WORKDIR /app
+
+-------
+
+And then build the Docker image using the following (which also gives you a nice use of ARG):
+
+$ docker build -t node-util:cliuser --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) .
+
+
+
+And finally running it with:
+
+$ docker run -it --rm -v $(pwd):/app node-util:cliuser npm init
 
 
 
