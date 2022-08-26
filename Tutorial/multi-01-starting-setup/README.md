@@ -9,7 +9,7 @@ docker network create fav-net
 ```
 Dockerizing Mongo DB
 ```
-docker run -d --name mongodb --network fav-net --rm -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=root mongo
+docker run -d --name mongodb --network fav-net --rm -p 27017:27017 -v data:/data/db -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=root mongo
 ```
 
 Dockerizing backned
@@ -42,9 +42,9 @@ docker run -d --name node --network fav-net -p 80:80 --rm node:v1
 ```
 
 Containerizing frontend application
- Create dockerfile
- ```
- FROM node
+Create dockerfile
+```
+FROM node
 
 WORKDIR /app
 
@@ -65,5 +65,5 @@ docker build -t goal-react:v1 .
 
 create container
 ```
-docker run -d --name goal -p 3000:3000 --network fav-net --rm goal-react:v1
+docker run -d --name goal -p 3000:3000 --network fav-net --rm -ti goal-react:v1
 ```
