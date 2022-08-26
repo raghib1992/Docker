@@ -1,0 +1,34 @@
+version: '3.9'
+services:
+  mongodb:
+    image: 'mongo'
+    volumes:
+      - data:/data/db
+    env_file:
+      - ./env/mongo.env
+  backend:
+    build:
+      context: ./backend
+    ports:
+        - '80:80'
+    volumes:
+      - ./backend:app
+      - logs:/app/logs
+      - /app/node_modules
+    depends_on:
+      - mongodb
+    env_file:
+      - ./env/backend.env
+  frontend:
+    build: ./frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend:/app/src
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+volumes:
+  - logs:
+  - data:

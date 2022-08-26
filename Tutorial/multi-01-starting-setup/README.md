@@ -67,3 +67,23 @@ create container
 ```
 docker run -d --name goal -p 3000:3000 --network fav-net --rm -ti goal-react:v1
 ```
+to make node container restart whenever code changes
+bind volume
+"devdependencies": {
+    "nodemon": "^2.0.4"
+}
+
+Inscripts section
+add
+"start": "nodemon app.js"
+
+In Dockerfile 
+CMD ["npm", "start"]
+
+make node app dynamic adding mongo username and password
+`mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@mongodb:27017/course-goals?authSource=admin`
+
+
+Dockerfile
+ENV MONGO_USERNAME=root
+ENV MONGO_PASSWORD=secret

@@ -17,6 +17,7 @@
         
   5. docker-compose up -d            # to start container using docker-compose file
   6. docker-compose down             # to remove container
+     docker-compose down -v          # to remove volume also
      docker-compose down -f docker-compose-mysql.yml
   
   7. variable
@@ -36,7 +37,7 @@
          volumes:
            - "/opt/mysql:/var/lib/mysql"        #BIND VOLUME
        volumes:
-         mysql_volume:                          #Normal Volume
+         mysql_volume:                          #Name Volume
          
          
          
@@ -108,7 +109,19 @@
         
        
         
-        
+n Linux machines, you need to install it separately.
+
+These steps should get you there:
+
+1. sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+2. sudo chmod +x /usr/local/bin/docker-compose
+
+3. sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+4. to verify: docker-compose --version
+
+Also see: https://docs.docker.com/compose/install/
         
         
         
