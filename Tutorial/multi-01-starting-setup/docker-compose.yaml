@@ -12,7 +12,7 @@ services:
     ports:
         - '80:80'
     volumes:
-      - ./backend:app
+      - ./backend:/app
       - logs:/app/logs
       - /app/node_modules
     depends_on:
@@ -30,5 +30,5 @@ services:
     depends_on:
       - backend
 volumes:
-  - logs:
-  - data:
+  logs:
+  data:
