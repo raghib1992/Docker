@@ -1,14 +1,16 @@
 ## To check Interface
-ip a                                          # to check all theinterface that docker host had available
+#### to check all theinterface that docker host had available
+ip a  
 
 ## All container assign to default network = bridge network
+### to get network list
+docker network ls                             
 
+### to filter bridge network from network list and all the container attached to this network
+docker network ls | grep bridge               
 
-docker network ls                             # to get network list
-
-docker network ls | grep bridge               # to filter bridge network from network list and all the container attached to this network
-
-docker network inspect bridge                 # inspect the bridge networ
+### inspect the bridge networ
+docker network inspect bridge                 
 
 ## To create new network
 docker network create -d <bridge> --subnet <> --gateway <> <new-network-name>
@@ -26,30 +28,9 @@ docker network connect <network-1-name> <network-2-container>
 docker network disconnect <network-1-name> <network-2-container>
 
 ## Asign static IP to container
-  # It is not possible in default network
+### It is not possible in default network
 docker run -d --network <> --ip <> <image-name>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### To connect from container to host
+[mongodb:http://host.docker.internal:<port>

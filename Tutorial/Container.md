@@ -1,8 +1,20 @@
 ## To create container
+```
 docker run <image-name>
-docker run -d <image-name>                 # -d is ffor detach mode(background)
 docker container create <image-name>
-
+```
+### -d is ffor detach mode(background)
+```
+docker run -d <image-name>                 
+```
+### To start interactive session on conatiner -t for tty and -i for interactive
+```
+docker run -ti <image name>
+```
+### TO delete container automatically when stop
+```
+docker run --rm <image>
+```
 
 ## To check container in docker host
 docker ps
@@ -13,7 +25,7 @@ docker ps --no-trunc
 
 ## To remove or rename container
 docker rm <name/ID>
-docker rm f <name/ID>                  # to remove running container by force
+docker rm -f <name/ID>                  # to remove running container by force
 docker rename <old name> <new-name>
 
 ## Start Stop Map port

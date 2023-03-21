@@ -1,9 +1,10 @@
+
 ## BIND Volumes define while creating a container
 ```
 docker run -d -v <path-in-host>:<path-in-container> --name <container-name> -e "test=123" -p 3306:3306 mysql:5.7  # andsame command is used to map back the volumes into container
 ```
 
-## NORMAL Volumes
+## Named Volumes
 ## to create volume in host
 ```
 docker volume create <directory-name>    # this volume create in docker root directory
@@ -26,6 +27,8 @@ docker inspect <container-name/ID>
           "Mounts":
               Name: <anonymous volume name>
 ```
+## Create Read Only volume i.e container not able to edit the volume
+docker run -d -v /host/volume:/container/volume:ro <image name>
 
 ## to remove volume use flag while destroying container
 ```

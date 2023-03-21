@@ -4,8 +4,11 @@ docker hub # all the world store images
 ## to find the downloaded images
 docker images
 
+## Inspect Image details
+docker image inspect <image id>
+
 # to create image from Docker file
-docker build -t <image-name> -f <docker-filr> path
+docker build -t <image-name> -f <docker-file name> path
 docker build -t <image name:tag> -f <dockerfile-name> --build-arg user=richard
 
 
