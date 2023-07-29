@@ -15,6 +15,9 @@ dockre exec -ti redis-container redis-cli  # i for interactive session STDIN # t
 docker exec -ti <container id> sh
 # starting conatiner with shell
 docker run -ti busybox sh 
+docker cp <local content> <container name>:<docker path>
+docker cp <container name>:<docker path> <local content> 
+
 
 # Create image from Dockerfile
 docker build -t <name of image> .
