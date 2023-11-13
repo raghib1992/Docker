@@ -17,5 +17,7 @@ docker compose up --build
 
 # Use containers for Node.js development
 - Adding a local database and persisting data
+
 - Configuring your container to run a development environment
+
 - Debugging your containerized application
