@@ -31,6 +31,6 @@ docker build -t k8sbacken:18-alpine .
 ```
 4. Launch conatainer
 ```
-docker run 0d --name k8sbackend 
+docker run -d --name k8sbackend 
 ```
 

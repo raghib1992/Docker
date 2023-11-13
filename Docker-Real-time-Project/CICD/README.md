@@ -1,6 +1,6 @@
 # Developer --> push code to feature branch in guthub --> Pull Request to MAster Branch --> Travis CI pull the code and test --> Merge the Pull Request to Master --> Deploy it to AWS host (Elastic Beanstalk)
 
-# For Develoment of Project locally
+### For Develoment of Project locally
 1. Install node js locally in laptop
 2. create react project
 ```
@@ -18,7 +18,7 @@ npm run build -- build the production version of project -- This will create bui
 ```
 5. Check build/static directory 
 
-# For Developemnt in Container
+### For Developemnt in Container
 1. Create Dockerfile
 ### Name = Dockerfile.dev
 ```
