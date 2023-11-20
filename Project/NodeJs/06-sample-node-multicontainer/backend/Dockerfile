@@ -8,4 +8,8 @@ RUN npm install
 
 COPY . .
 
+ENV MONGODB_USERNAME=admin
+ENV MONGODB_PASSWORD=secret
+
 CMD ["node", "app.js"]
+

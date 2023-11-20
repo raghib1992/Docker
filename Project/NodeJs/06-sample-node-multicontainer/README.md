@@ -26,27 +26,71 @@ npm start
 ```
 
 # To Run Application in Container
-1. Create mongodb container
+0. **Create Network**
+```sh
+docker network create goals-net
+```
+1. **Create mongodb container**
+- Simaple container
 ```
 docker run -d -p 27017:27017 --name mongo mongo
 ```
-2. Create backend
-- Write dockerfile
-- Create Image
+- Container with data persistence and security
+```sh
+docker run -d -v data:/data/db --rm --name mongodb --network goals-net -e MONGO_INITDB_ROOT_USERNAME=raghib -e MONGO_INITDB_ROOT_PASSWORD=secret mongo
 ```
-docker build -t backend:1 .
+2. **Create backend**
+- Write dockerfile
+- Edit host name in app.js
+```sh
+# to connect db in localhost
+'mongodb://host.docker.internal:27017/course-goals'
+
+# to connect to container with cred
+'mongodb://raghib:secret@mongodb:27017/course-goals?authSource=admin'
+
+# Pass username and password as ENV value
+`mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@mongodb:27017/course-goals?authSource=admin`
+
+# Add ENV value in Dockerfile
+ENV MONGODB_USERNAME=root
+ENV MONGODB_PASSWORD=secret
+```
+- Create Image
+```sh
+docker build -t backend:latest .
 ```
 - create container
+```sh
+# Create container with network
+docker run -d -p 80:80 --name goal-backend --network goals-net --rm backend:latest
+# Create container with bind mount volume forlive code update
+docker run -d -p 80:80 --name goal-backend -v "C:\Users\raghi\Desktop\Docker\Project\NodeJs\06-sample-node-multicontainer\backend:/app" -v logs:/app/logs -v back:/app/node_modules --network goals-net --rm backend:latest
+
+# add env value
+docker run -d -p 80:80 --name goal-backend -v "C:\Users\raghi\Desktop\Docker\Project\NodeJs\06-sample-node-multicontainer\backend:/app" -e MONGODB_USERNAME raghib -v logs:/app/logs -v back:/app/node_modules --network goals-net --rm backend:latest
 ```
-docker run -d -p 80:80 --name goal-backend --rm backend:1
+- To make application restart for every change
+    - Add in package.json
+```json
+//In script section
+"start": "nodemon app.js"
+// new section
+"devDependencies": {
+    "nodemon": "^2.0.4"
+}
 ```
-3. Create frontend
+    - In dockerfile
+```sh
+CMD ["npm", "start"]
+```
+3. **Create frontend**
 - Write dockerfile
 - Create Image
-```
-docker build -t frontend:1 .
+```sh
+docker build -t frontend:latest .
 ```
 - create container
-```
-docker run -d -p 3000:3000 --name goal-frontend --rm frontend:1
+```sh
+docker run -d -p 3000:3000 -v "C:\Users\raghi\Desktop\Docker\Project\NodeJs\06-sample-node-multicontainer\frontend\src:/app/src" --name goal-frontend --rm frontend:latest
 ```
